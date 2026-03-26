@@ -1,183 +1,74 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Sphère Diplomatique</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
-<style>
-body {
-  margin:0;
-  font-family:'Playfair Display', serif;
-  background:#f5f1e8;
-  color:#111;
-  transition:0.3s;
-}
-
-.dark {
-  background:#111;
-  color:#eee;
-}
-
-header {
-  text-align:center;
-  padding:20px;
-}
-
-.logo {
-  font-size:32px;
-  font-weight:bold;
-}
-
-nav {
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  flex-wrap:wrap;
-}
-
-nav button {
-  background:none;
-  border:none;
-  font-size:16px;
-  cursor:pointer;
-}
-
-.toggle {
-  margin-top:10px;
-  cursor:pointer;
-}
-
-.breaking {
-  background:#8b0000;
-  color:white;
-  padding:10px;
-  animation:scroll 10s linear infinite;
-}
-
-@keyframes scroll {
-  from {transform:translateX(100%);}
-  to {transform:translateX(-100%);}
-}
-
-.articles {
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
-  gap:20px;
-  padding:20px;
-}
-
-.card {
-  background:white;
-  padding:15px;
-  cursor:pointer;
-}
-
-.dark .card {
-  background:#222;
-}
-
-.hidden {
-  display:none;
-}
-
-#articlePage {
-  padding:20px;
-  display:none;
-}
-
-.newsletter {
-  text-align:center;
-  padding:20px;
-  background:#222;
-  color:white;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <title>Sphère Diplomatique</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
-  <div class="logo">Sphère Diplomatique</div>
-
-  <nav>
-    <button onclick="filter('all')">Tous</button>
-    <button onclick="filter('politique')">Politique</button>
-    <button onclick="filter('eco')">Économie</button>
-    <button onclick="filter('universite')">Université</button>
-  </nav>
-
-  <div class="toggle" onclick="toggleDark()">🌙 Mode sombre</div>
+    <div class="logo">Sphère Diplomatique</div>
+    <nav>
+        <a href="#">International</a>
+        <a href="#">Politique</a>
+        <a href="#">Économie</a>
+        <a href="#">Université</a>
+    </nav>
 </header>
 
-<div class="breaking">🔴 Flash : tensions diplomatiques en analyse...</div>
-
-<!-- LISTE ARTICLES -->
-<section class="articles" id="articles">
-
-  <div class="card politique" onclick="openArticle('Article Politique','Analyse politique détaillée...')">
-    <h3>Politique internationale</h3>
-  </div>
-
-  <div class="card eco" onclick="openArticle('Économie mondiale','Crise économique globale...')">
-    <h3>Économie mondiale</h3>
-  </div>
-
-  <div class="card universite" onclick="openArticle('Université','Recherche académique...')">
-    <h3>Université & Recherche</h3>
-  </div>
-
+<section class="hero">
+    <h1>Actualités internationales</h1>
+    <p>Analyse géopolitique et économique fiable</p>
 </section>
 
-<!-- PAGE ARTICLE -->
-<section id="articlePage">
-  <button onclick="back()">⬅ Retour</button>
-  <h1 id="title"></h1>
-  <p id="content"></p>
-</section>
+<main>
 
-<section class="newsletter">
-  <h3>Newsletter</h3>
-  <input placeholder="Votre email">
-  <button onclick="alert('Inscription réussie')">S'inscrire</button>
-</section>
+    <section class="articles">
+        <h2>À la une</h2>
 
-<script>
+        <article>
+            <h3>Guerre en Ukraine : situation actuelle</h3>
+            <p>Les tensions persistent entre la Russie et l’Ukraine avec des impacts économiques mondiaux.</p>
+            <a href="#">Lire plus</a>
+        </article>
 
-function filter(category) {
-  let cards = document.querySelectorAll('.card');
+        <article>
+            <h3>Crise au Moyen-Orient</h3>
+            <p>Les négociations internationales se poursuivent pour tenter de stabiliser la région.</p>
+            <a href="#">Lire plus</a>
+        </article>
 
-  cards.forEach(card => {
-    if(category === 'all') {
-      card.classList.remove('hidden');
-    } else {
-      card.classList.toggle('hidden', !card.classList.contains(category));
-    }
-  });
-}
+        <article>
+            <h3>Inflation mondiale en 2025</h3>
+            <p>Les banques centrales adaptent leurs politiques face à une inflation persistante.</p>
+            <a href="#">Lire plus</a>
+        </article>
 
-function openArticle(title, content) {
-  document.getElementById('articles').style.display = 'none';
-  document.getElementById('articlePage').style.display = 'block';
+    </section>
 
-  document.getElementById('title').innerText = title;
-  document.getElementById('content').innerText = content;
-}
+    <section class="grid">
+        <article>
+            <h3>Afrique : enjeux économiques</h3>
+            <p>Une croissance en mutation portée par la jeunesse et les investissements.</p>
+        </article>
 
-function back() {
-  document.getElementById('articles').style.display = 'grid';
-  document.getElementById('articlePage').style.display = 'none';
-}
+        <article>
+            <h3>Union Européenne</h3>
+            <p>Réformes institutionnelles en discussion à Bruxelles.</p>
+        </article>
 
-function toggleDark() {
-  document.body.classList.toggle('dark');
-}
+        <article>
+            <h3>États-Unis : politique intérieure</h3>
+            <p>Débats intenses à l’approche des élections.</p>
+        </article>
+    </section>
 
-</script>
+</main>
+
+<footer>
+    <p>© 2026 Sphère Diplomatique - Tous droits réservés</p>
+</footer>
 
 </body>
 </html>
