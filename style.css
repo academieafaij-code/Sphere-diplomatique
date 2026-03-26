@@ -1,0 +1,64 @@
+body {
+    font-family: Georgia, serif;
+    margin: 0;
+    background: #f5f5f5;
+    color: #111;
+}
+
+header {
+    background: #111;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.hero {
+    background: #ddd;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+main {
+    width: 80%;
+    margin: auto;
+}
+
+.articles article {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid black;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.grid article {
+    background: white;
+    padding: 15px;
+}
+
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
