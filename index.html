@@ -1,74 +1,94 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE html><html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Sphère Diplomatique</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sphère Diplomatique</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-
-<header>
-    <div class="logo">Sphère Diplomatique</div>
-    <nav>
-        <a href="#">International</a>
-        <a href="#">Politique</a>
-        <a href="#">Économie</a>
-        <a href="#">Université</a>
+<body class="bg-gray-100 text-gray-800">  <!-- NAVBAR -->  <header class="bg-black text-white p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">Sphère Diplomatique</h1>
+    <button id="menuBtn" class="md:hidden">☰</button>
+    <nav id="menu" class="hidden md:flex gap-6">
+      <a href="#" class="hover:underline">International</a>
+      <a href="#" class="hover:underline">Politique</a>
+      <a href="#" class="hover:underline">Économie</a>
+      <a href="#" class="hover:underline">Université</a>
     </nav>
-</header>
+  </header>  <!-- HERO -->  <section class="text-center py-10 bg-white shadow">
+    <h2 class="text-3xl font-bold">Actualités internationales</h2>
+    <p class="text-gray-600">Analyse géopolitique et économique fiable</p>
+  </section>  <!-- SEARCH -->  <div class="p-4 max-w-4xl mx-auto">
+    <input id="search" type="text" placeholder="Rechercher un article..." class="w-full p-2 border rounded">
+  </div>  <!-- ARTICLES -->  <section id="articles" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 max-w-6xl mx-auto">
+  </section>  <!-- MODAL -->  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div class="bg-white p-6 rounded max-w-lg w-full">
+      <h3 id="modalTitle" class="text-xl font-bold mb-2"></h3>
+      <p id="modalContent"></p>
+      <button onclick="closeModal()" class="mt-4 bg-black text-white px-4 py-2 rounded">Fermer</button>
+    </div>
+  </div>  <!-- FOOTER -->  <footer class="bg-black text-white text-center p-4 mt-6">
+    © 2026 Sphère Diplomatique
+  </footer>  <script>
+    const data = [
+      {
+        title: "Guerre en Ukraine",
+        content: "Analyse complète du conflit et impacts mondiaux.",
+        category: "International"
+      },
+      {
+        title: "Crise au Moyen-Orient",
+        content: "Les tensions géopolitiques persistent.",
+        category: "Politique"
+      },
+      {
+        title: "Inflation mondiale",
+        content: "Les économies s'adaptent à une inflation durable.",
+        category: "Économie"
+      },
+      {
+        title: "Afrique : croissance",
+        content: "Une jeunesse moteur du développement.",
+        category: "Économie"
+      }
+    ];
 
-<section class="hero">
-    <h1>Actualités internationales</h1>
-    <p>Analyse géopolitique et économique fiable</p>
-</section>
+    const container = document.getElementById("articles");
+    const search = document.getElementById("search");
 
-<main>
+    function displayArticles(list) {
+      container.innerHTML = "";
+      list.forEach(article => {
+        const card = document.createElement("div");
+        card.className = "bg-white p-4 rounded shadow hover:shadow-lg transition";
+        card.innerHTML = `
+          <h3 class="font-bold text-lg">${article.title}</h3>
+          <p class="text-sm text-gray-600">${article.category}</p>
+          <button class="mt-2 text-blue-500" onclick="openModal('${article.title}', '${article.content}')">Lire plus</button>
+        `;
+        container.appendChild(card);
+      });
+    }
 
-    <section class="articles">
-        <h2>À la une</h2>
+    function openModal(title, content) {
+      document.getElementById("modalTitle").innerText = title;
+      document.getElementById("modalContent").innerText = content;
+      document.getElementById("modal").classList.remove("hidden");
+    }
 
-        <article>
-            <h3>Guerre en Ukraine : situation actuelle</h3>
-            <p>Les tensions persistent entre la Russie et l’Ukraine avec des impacts économiques mondiaux.</p>
-            <a href="#">Lire plus</a>
-        </article>
+    function closeModal() {
+      document.getElementById("modal").classList.add("hidden");
+    }
 
-        <article>
-            <h3>Crise au Moyen-Orient</h3>
-            <p>Les négociations internationales se poursuivent pour tenter de stabiliser la région.</p>
-            <a href="#">Lire plus</a>
-        </article>
+    search.addEventListener("input", () => {
+      const value = search.value.toLowerCase();
+      const filtered = data.filter(a => a.title.toLowerCase().includes(value));
+      displayArticles(filtered);
+    });
 
-        <article>
-            <h3>Inflation mondiale en 2025</h3>
-            <p>Les banques centrales adaptent leurs politiques face à une inflation persistante.</p>
-            <a href="#">Lire plus</a>
-        </article>
+    document.getElementById("menuBtn").addEventListener("click", () => {
+      document.getElementById("menu").classList.toggle("hidden");
+    });
 
-    </section>
-
-    <section class="grid">
-        <article>
-            <h3>Afrique : enjeux économiques</h3>
-            <p>Une croissance en mutation portée par la jeunesse et les investissements.</p>
-        </article>
-
-        <article>
-            <h3>Union Européenne</h3>
-            <p>Réformes institutionnelles en discussion à Bruxelles.</p>
-        </article>
-
-        <article>
-            <h3>États-Unis : politique intérieure</h3>
-            <p>Débats intenses à l’approche des élections.</p>
-        </article>
-    </section>
-
-</main>
-
-<footer>
-    <p>© 2026 Sphère Diplomatique - Tous droits réservés</p>
-</footer>
-
-</body>
+    displayArticles(data);
+  </script></body>
 </html>
